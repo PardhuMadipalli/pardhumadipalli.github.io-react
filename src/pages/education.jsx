@@ -3,8 +3,7 @@ import React from "react";
 import {
     School as SchoolIcon,
 } from '@mui/icons-material';
-import 'react-vertical-timeline-component/style.min.css';
-import {Typography} from "@mui/material";
+import {List, ListItem, Typography} from "@mui/material";
 import {EndTimelineItem, fetchDataAndUpdateItems, useIsBiggerThanSm, SlideTimelineContent} from "../commons/commons";
 import {
     Timeline,
@@ -49,7 +48,16 @@ export function EducationTimeline() {
                 }>
                     <Typography variant="subtitle">{item.institute}</Typography>
                     <Typography paragraph mt={2}>{item.branch}</Typography>
-                    <Typography paragraph pb={2}>Grade: {item.grade}</Typography>
+                    <Typography paragraph pb={1}>Grade: {item.grade}</Typography>
+                {item.additionalDataItems &&
+                    item.additionalDataItems.map((addItem, i) =>
+                        <>
+                        <Typography key={i}><i>{addItem.heading}</i></Typography>
+                        <List>
+                            {addItem.data.map((dataItem, i) => <ListItem key={i}>{dataItem}</ListItem>)}
+                        </List>
+                        </>)
+                }
             </EducationTimelineItem>
         )}
         {biggerThanSm ? <EndTimelineItem/> : null}

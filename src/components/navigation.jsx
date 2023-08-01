@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 const CapTab = styled((props) => <Tab {...props} />)(({ theme }) => ({
     textTransform: 'none',
     fontSize: 16,
+    minWidth: 0
   }));
 
 
@@ -18,7 +19,11 @@ export function TabsNav({tabsList, ...props}) {
         setCurrTab(newTabValue)
     }
     return(
-        <Tabs value={currTab} onChange={handleTabSwitch}>
+        <Tabs value={currTab}
+              onChange={handleTabSwitch}
+              variant="scrollable"
+              scrollButtons="auto"
+        >
             { tabsList.map((tab, i) =>
                 <CapTab
                     label={tab.label}

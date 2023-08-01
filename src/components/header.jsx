@@ -3,31 +3,35 @@ import { Grid, Typography, useMediaQuery, useTheme, Stack } from "@mui/material"
 import BlogLogo from "./blogLogo";
 import { TabsNav } from './navigation';
 import SwipeableMenu from './menuDrawer';
+import {fetchDataAndUpdateItems} from "../commons/commons";
+import ExpData from "../content/experience.yml";
 
-const tabs = [
-    {
-        label: "Home",
-        url: "/"
-    },
-    {
-        label: "Work",
-        url: "/work"
-    },
-    {
-        label: "Publications",
-        url: "/publications"
-    },
-    {
-        label: "Volunteering",
-        url: "/volunteering"
-    }, 
-    {
-        label: "Education",
-        url: "/education"
-    }
-]
+// const tabs = [
+//     {
+//         label: "Home",
+//         url: "/"
+//     },
+//     {
+//         label: "Work",
+//         url: "/work"
+//     },
+//     {
+//         label: "Volunteering",
+//         url: "/volunteering"
+//     },
+//
+//     {
+//         label: "Education",
+//         url: "/education"
+//     },
+//     {
+//         label: "Publications",
+//         url: "/publications"
+//     }
+// ]
+const MenuTabsData = require('../content/miscellaneous/menuElements.yml')
 
-const MobileHeader = () =>
+const MobileHeader = ({tabs}) =>
     <Stack direction='row' component='header' justifyContent='space-between'
         sx={{ 
             position: 'sticky', 
@@ -39,8 +43,15 @@ const MobileHeader = () =>
          <SwipeableMenu tabs={tabs}/>
     </Stack>
 
-const DesktopHeader = ({pageTitle}) => 
-    <Grid container px="40px" py="25px" component="header">
+const DesktopHeader = ({pageTitle, tabs}) =>
+    <Grid container px="40px" py="25px" component="header"
+          sx={{
+              backgroundColor: (theme) =>
+                  theme.palette.mode === 'light'
+                      ? theme.palette.grey[200]
+                      : theme.palette.grey[800],
+          }}
+    >
         <Grid container item spacing={7} alignItems="center" xs={7}>
             <Grid item>
                 <BlogLogo />
@@ -51,7 +62,10 @@ const DesktopHeader = ({pageTitle}) =>
                 </Typography>
             </Grid> 
         </Grid>
-        <Grid container justifyContent="flex-end" alignItems="center" direction="row" item xs={5} spacing={3}>
+        <Grid container justifyContent="flex-end" alignItems="center" direction="row"
+              item xs={5}
+              spacing={3}
+        >
             <TabsNav tabsList={tabs}/>  
         </Grid>
     </Grid>
@@ -59,7 +73,9 @@ const DesktopHeader = ({pageTitle}) =>
 
 export default function BlogHeader({pageTitle}) {
 
-    const isBiggerThanSm = useMediaQuery(useTheme().breakpoints.up('sm'))
+    const isBiggerThanSm = useMediaQuery(useTheme().breakpoints.up('md'))
+    const [tabs, setTabs] = React.useState([])
+    React.useEffect(fetchDataAndUpdateItems(MenuTabsData, setTabs), [])
     return (
         <>
             {

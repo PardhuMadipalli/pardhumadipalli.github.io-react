@@ -19,7 +19,10 @@ const PubCard = ({pub}) =>
             <CardActionArea href={'/publications/' + pub.stub}>
                 <CardMedia
                     component="img"
-                    sx={{ display: {xs: 'block', xl: 'none'}, width: '100%', paddingX: '0px' }}
+                    sx={{
+                        display: {xs: 'block', sm: 'none'},
+                        width: '100%', paddingX: '0px'
+                }}
                     image={pub.publisher.image}
                     alt="Live from space album cover"
                 />
@@ -43,7 +46,10 @@ const PubCard = ({pub}) =>
         </Box>
         <CardMedia
             component="img"
-            sx={{ display: {xs: 'none', xl: 'block'}, width: 200 }}
+            sx={{
+                display: {xs: 'none', sm: 'block'},
+                width: 200
+        }}
             image={pub.publisher.image}
             alt="Live from space album cover"
         />
@@ -58,8 +64,8 @@ export default function PublicationsPage() {
                 name: 'Biomedical Signal Processing and Control',
                 image: elsevierImage
             },
-            stub: 'first',
-            paperUrl: 'https://google.com',
+            stub: 'segmentation-intima-media-complex-wdo',
+            paperUrl: 'https://www.sciencedirect.com/science/article/abs/pii/S174680941730174X?via%3Dihub',
         },
         {
             title: 'Segmentation of intima media complex from carotid ultrasound images using wind driven optimization technique',
@@ -67,12 +73,17 @@ export default function PublicationsPage() {
                 name: 'Biomedical Signal Processing and Control',
                 image: ieeeImage
             },
-            stub: 'second',
-            paperUrl: 'https://google.com',
+            stub: 'segmentation-intima-media-complex-awdo',
+            paperUrl: 'https://www.sciencedirect.com/science/article/pii/S174680941730174X',
         },
     ]
     return (
-        <Stack direction="column" justifyContent="center" alignItems="center" spacing={5}>
+        <Stack direction="column"
+               justifyContent="center"
+               alignItems="center"
+               spacing={5}
+               sx = {{ py: 3 }}
+        >
             {publications.map((pub, i) => <PubCard pub={pub} key={i}/>)}
         </Stack>
     )

@@ -7,17 +7,22 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { EducationTimeline } from './pages/education';
 import PublicationsPage from './pages/publications';
 import VolunteeringPage from './pages/volunteering';
+import PersonalPage from "./pages/personal";
 import pubs from './pages/individualPub'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green, purple } from '@mui/material/colors';
+import { green, purple, grey } from '@mui/material/colors';
 import CssBaseline from "@mui/material/CssBaseline";
 const theme = createTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: '#639',
     },
     secondary: {
-      main: green[500],
+      main: green[600],
+    },
+    background: {
+      default: grey[100],
+      // paper: '#221212',
     },
   },
 });
@@ -44,32 +49,33 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-    <BrowserRouter>
-      {/* <SkeletonPage> */}
-      <Routes>
-        <Route path="/" element={<SkeletonPage/>}>
-          <Route index element={<HomePage/>} />
-          <Route path="work" element={ <WorkPage/>} />
-          <Route path='education' element={ <EducationTimeline/>} />
-          <Route path="publications"> 
-            <Route index element={ <PublicationsPage/> } />
-            {pubs().map(([title, pubComponent]) => <Route path={title} element={pubComponent} key={title}/>)}
-          </Route>
-          <Route path="volunteering" element={ <VolunteeringPage/> } />
-        </Route>
+        <BrowserRouter>
+          {/* <SkeletonPage> */}
+          <Routes>
+            <Route path="/" element={<SkeletonPage/>}>
+              <Route index element={<HomePage/>} />
+              <Route path="work" element={ <WorkPage/>} />
+              <Route path='education' element={ <EducationTimeline/>} />
+              <Route path="publications">
+                <Route index element={ <PublicationsPage/> } />
+                {pubs().map(([title, pubComponent]) => <Route path={title} element={pubComponent} key={title}/>)}
+              </Route>
+              <Route path="volunteering" element={ <VolunteeringPage/> } />
+              <Route path="personal" element={ <PersonalPage/> }/>
+            </Route>
 
-      </Routes>
+          </Routes>
 
-      {/* <Link to={'/work'} component={RouterLink}>Work</Link> */}
-      
-      {/* <br/><br/>
-      <Link to={'/work'} component={RouterLink}>Work</Link>
-      <br/><br/> <Link to={'/work'} component={RouterLink}>Work</Link>
-      <br/><br/> <Link to={'/work'} component={RouterLink}>Work</Link>
-      <br/><br/> */}
-      {/* </SkeletonPage> */}
+          {/* <Link to={'/work'} component={RouterLink}>Work</Link> */}
 
-    </BrowserRouter>
+          {/* <br/><br/>
+          <Link to={'/work'} component={RouterLink}>Work</Link>
+          <br/><br/> <Link to={'/work'} component={RouterLink}>Work</Link>
+          <br/><br/> <Link to={'/work'} component={RouterLink}>Work</Link>
+          <br/><br/> */}
+          {/* </SkeletonPage> */}
+
+        </BrowserRouter>
       </ThemeProvider>
   );
 }

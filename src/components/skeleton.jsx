@@ -1,13 +1,17 @@
 import React from 'react'
-import { Container } from '@mui/material'
+import {Container} from '@mui/material'
 import FooterSticky from "./FooterSticky"
 import BlogHeader from "./header"
 import { Outlet } from 'react-router-dom'
+import {fetchDataAndUpdateItems} from "../commons/commons";
 
-
+const footerIconsData = require("../content/miscellaneous/footerIcons.yml")
 export default function SkeletonPage(props) {
 
-    const footerIcons = [
+    const [footerIcons, setFooterIcons] = React.useState([])
+    React.useEffect(fetchDataAndUpdateItems(footerIconsData, setFooterIcons), [])
+
+    const footerIconsz = [
         {
             imgSrc: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJfeDMxXzEyLWdtYWlsX3gyQ19fZW1haWxfeDJDX19tYWlsIj48Zz48Zz48Zz48cmVjdCBoZWlnaHQ9IjM1OC44NyIgc3R5bGU9ImZpbGw6I0YxRjVGNzsiIHdpZHRoPSIzNTcuOTA0IiB4PSI3Ny4wNDUiIHk9Ijc2LjU2NSIvPjxwYXRoIGQ9Ik0yNTYuMDAyLDI5My43MzhsMTc4Ljk0NywxNDEuNjk3di0yNzkuNzRMMjU2LjAwMiwyOTMuNzM4eiBNMjU2LjAwMiwyOTMuNzM4IiBzdHlsZT0iZmlsbDojRENFNkVBOyIvPjxwYXRoIGQ9Ik00NDkuODYxLDc2LjU2NWgtMTQuOTEyTDI1Ni4wMDIsMjE4LjI2TDc3LjA0NSw3Ni41NjVINjIuMTM0ICAgICAgYy0yNC42OTMsMC00NC43MzcsMjAuMDk0LTQ0LjczNyw0NC44NTh2MjY5LjE1MmMwLDI0Ljc1OSwyMC4wNDQsNDQuODU5LDQ0LjczNyw0NC44NTloMTQuOTExdi0yNzkuNzRsMTc4Ljk1NywxMzguMDE0ICAgICAgbDE3OC45NDctMTM4LjA0N3YyNzkuNzczaDE0LjkxMmMyNC42OTksMCw0NC43NDItMjAuMTAxLDQ0Ljc0Mi00NC44NTlWMTIxLjQyNEM0OTQuNjA0LDk2LjY2LDQ3NC41NjEsNzYuNTY1LDQ0OS44NjEsNzYuNTY1ICAgICAgTDQ0OS44NjEsNzYuNTY1eiBNNDQ5Ljg2MSw3Ni41NjUiIHN0eWxlPSJmaWxsOiNGODQ0Mzc7Ii8+PC9nPjwvZz48L2c+PC9nPjxnIGlkPSJMYXllcl8xIi8+PC9zdmc+", 
             linkUrl: "mailto:pardhu1212@gmail.com",

@@ -21,7 +21,9 @@ function VoppContent({vopp, isBiggerThanSm}) {
             {vopp.position}
         </Typography>
         <Typography sx={{ mt: 0.5}}>
-            <Link variant="subtitle1" href={vopp.org.url} component="a" underline="hover">
+            <Link variant="subtitle1"
+                  href={vopp.org.url}
+                  underline="hover">
                 {vopp.org.name}
             </Link>
             {isBiggerThanSm ?  <span>&nbsp;&nbsp;</span> : <br/>}
@@ -40,26 +42,61 @@ function VoppContent({vopp, isBiggerThanSm}) {
 function VolunteerItem({vOpp}) {
     const isBiggerThanSm = useMediaQuery(useTheme().breakpoints.up('sm'))
     return(
-        <Card sx={{ width: {xs: '100%', sm: '75%', lg: '60%'}}}>
+        <Card sx={{
+            width: {xs: '100%', sm: '75%', lg: '70%'},
+            height: {xs: 'auto', sm: 400},
+            display: 'flex'
+        }}>
             { isBiggerThanSm ? 
-            <CardMedia image='./favicon.ico' >
-                <CardContent sx={{ backgroundColor: 'rgba(0,0,0, 0.6)' }}>
-                    <Box sx={{ backgroundColor: (theme) => theme.palette.background.paper }} p={3} m={3}>
-                        <VoppContent vopp={vOpp} isBiggerThanSm={isBiggerThanSm}/>
-                    </Box>
-                </CardContent>
-            </CardMedia>
+            // <CardMedia image='./favicon.ico' >
+            //     <CardContent sx={{
+            //         // backgroundColor: 'rgba(0,0,0, 0.6)',
+            //         // backdropFilter: 'blur(3px)'
+            //     }}>
+            //         <Box
+            //             sx={{
+            //                 // backgroundColor: (theme) => theme.palette.background.paper,
+            //                 backdropFilter: 'blur(40px)',
+            //                 color: 'white'
+            //         }}
+            //             p={3} m={3}
+            //         >
+            //             <VoppContent vopp={vOpp} isBiggerThanSm={isBiggerThanSm}/>
+            //         </Box>
+            //     </CardContent>
+            // </CardMedia>
+
+                // greater than sm
+                <>
+                    <CardContent sx={{
+                        // backgroundColor: 'rgba(0,0,0, 0.6)',
+                        // backdropFilter: 'blur(3px)'
+                        width: 0.65
+                    }}>
+                        {/*<Box*/}
+                        {/*    sx={{*/}
+                        {/*        // backgroundColor: (theme) => theme.palette.background.paper,*/}
+                        {/*        backdropFilter: 'blur(40px)',*/}
+                        {/*    }}*/}
+                        {/*    p={3}*/}
+                        {/*>*/}
+                            <VoppContent vopp={vOpp} isBiggerThanSm={isBiggerThanSm}/>
+                        {/*</Box>*/}
+                    </CardContent>
+
+                    <CardMedia image={vOpp.imageUrl} sx={{ width: 0.35, height: 1}} />
+                </>
 
             :
-
-            <>
-                <CardMedia image='./favicon.ico' sx={{ width: '100%', height: '200px'}} />
-                <CardContent>
-                    {/* <Box sx={{ backgroundColor: (theme) => theme.palette.background.paper }} p={3} m={3}> */}
-                        <VoppContent vopp={vOpp}/>
-                    {/* </Box> */}
-                </CardContent>
-            </>
+                // less than sm
+                <Box>
+                    <CardMedia image={vOpp.imageUrl} sx={{ width: '100%', height: '200px'}} />
+                    <CardContent>
+                        {/* <Box sx={{ backgroundColor: (theme) => theme.palette.background.paper }} p={3} m={3}> */}
+                            <VoppContent vopp={vOpp}/>
+                        {/* </Box> */}
+                    </CardContent>
+                </Box>
 
             }
         </Card>

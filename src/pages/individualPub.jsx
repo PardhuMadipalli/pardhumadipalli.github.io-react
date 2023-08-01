@@ -1,12 +1,15 @@
 import React from "react";
-import { 
+import {
     List,
-    ListItem, 
+    ListItem,
     Typography,
-    Box, 
+    Box,
     Container,
-    Link} from "@mui/material";
+    Link, Grid
+} from "@mui/material";
+import {fetchDataAndUpdateItems} from "../commons/commons";
 
+const pubData = require("../content/publications.yml")
 const SegmentHeading = ({heading}) =>
     <Typography component="h2" variant="h5">{heading}</Typography>
 
@@ -14,7 +17,7 @@ function PubInitialDetails({pub}) {
     return (
         <>
             <SegmentHeading heading="Authors"/>
-            <List>
+            <List dense>
                 {pub.authors.map((auth) => <ListItem>{auth}</ListItem>)}
             </List>
         </>
@@ -29,7 +32,9 @@ function PubFinalDetails({pub}) {
                 {pub.abstract.map((para) => <Typography paragraph>{para}</Typography>)}
             </Box>
             <SegmentHeading heading="Citation"/>
-            <Typography component="pre" variant="pre">{pub.citation}</Typography>
+            <Typography component="pre" variant="pre" sx={{ whiteSpace: 'pre-wrap'}}>
+                {pub.citation}
+            </Typography>
         </>
     )
 }
@@ -56,59 +61,34 @@ function Pub({pub}) {
         <>  
             <Container maxWidth='lg'>
                 <Typography component="h1" variant="h2">{pub.title}</Typography>
-                <PubInitialDetails pub={pub}/>
-                <Box sx={{
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[800],
+                <Grid container sx={{ py: 4 }}>
+                    <Grid item sm={4}>
+                        <Box sx={{
+                            backgroundColor: (theme) =>
+                                theme.palette.mode === 'light'
+                                    ? theme.palette.grey[200]
+                                    : theme.palette.grey[800],
 
-                        p:2
-                    }}>
-                    <PubJournalDetails pub={pub} />
-                </Box>
-                <PubFinalDetails pub={pub}/>
+                            p: 2,
+                            mr: 4
+                        }}>
+                            <PubInitialDetails pub={pub} />
+                            <PubJournalDetails pub={pub} />
+                        </Box>
+                    </Grid>
+                    <Grid item sm={8}>
+                        <PubFinalDetails pub={pub}/>
+                    </Grid>
+                </Grid>
             </Container>
         </>
     )
 }
 
 export default function pubs() {
-    const pubs = [
-        {
-            stub : "first",
-            title: "This is title",
-            authors: ['Nagaraj', 'Pardhu Madipalli'],
-            publication: {
-                type: "Journal",
-                name: "Biomedical journal",
-                date: "July 2017",
-                doi: {
-                    number: "numer",
-                    url: "jshajshajsh"
-                }
-            },
-            abstract: ["para", "para", "para"],
-            citation: "nvjhgjhgjhgjhgjhgjhgjhgjhg \njhgkugjkghjghg"
-        }, 
-        {
-            stub: "second",
-            title: "This is second title",
-            authors: ['Nagaraj', 'Pardhu Madipalli'],
-            publication: {
-                type: "Conference",
-                name: "IEEE conference",
-                date: "July 2017",
-                doi: {
-                    number: "number",
-                    url: "hsajhsajhs"
-                }
-            },
-            abstract: ["para", "para", "para"],
-            citation: "nvjhgjhgjhgjhgjhgjhgjhgjhg"
-        }
-    ]
+    const [pubItems, setPubItems] = React.useState([])
+    React.useEffect(fetchDataAndUpdateItems(pubData, setPubItems), [])
     const pubsArray = []
-    pubs.forEach((pub) => {pubsArray.push([pub.stub, <Pub pub={pub}/>])})
+    pubItems.forEach((pub) => {pubsArray.push([pub.stub, <Pub pub={pub}/>])})
     return pubsArray
 } 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid, Link, List, ListItem} from "@mui/material"
+import {Box, Grid, Link, List, ListItem, SvgIcon} from "@mui/material"
 import {
     Timeline,
     TimelineConnector,
@@ -15,8 +15,8 @@ import {
 // import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import {EndTimelineItem, fetchDataAndUpdateItems, useIsBiggerThanSm, LeftSlideTimelineContent} from "../commons/commons";
-import 'react-vertical-timeline-component/style.min.css';
 import {Business, Star as StarIcon, Work} from "@mui/icons-material";
+import AmazonIcon from "../static/images/icons/amazon-icon.svg"
 
 const ExpData = require('../content/experience.yml')
 const SkillData = require('../content/skills.yml')
@@ -24,12 +24,12 @@ const SkillData = require('../content/skills.yml')
 export default function WorkPage() {
     return (
         <Grid container columnSpacing={4}>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} md={8}>
                 <WorkMainItem heading="Experience">
                     <ExperienceContent />
                 </WorkMainItem>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} md={4}>
                 <WorkMainItem heading="Certifications">
                     <List sx = {{
                         listStyleType: 'disc',
@@ -167,6 +167,7 @@ function ExperienceItem({item, containerRef}) {
                     </TimelineOppositeContent> : null}
                     <TimelineSeparator>
                         <TimelineDot color='secondary'>
+                            {/*<SvgIcon component={AmazonIcon} inheritViewBox/>*/}
                             <Work/>
                         </TimelineDot>
                         <TimelineConnector />

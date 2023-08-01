@@ -1,9 +1,21 @@
 data:
+  - position: Software development volunteer
+    org:
+      name: Internet Freedom Foundation
+      url: https://internetfreedom.in/
+    duration: May 2023 - current
+    desc:
+      - |
+        A web application to track the websites that are blocked by the Indian Government is being developed by me with the help of a few others. 
+        Once ready it will be similar https://blocked.org.uk .
+      - |
+        Anybody can enter a url into our site and verify if it is blocked by any ISP in India.
+    imageUrl: /vol/software-developer.png
   - position: Teacher, Volunteer recruiter
     org: 
       name: eVidyaloka
-      link: https://www.evidyaloka.org/
-    duration: Mar 2021 - Current
+      url: https://www.evidyaloka.org/
+    duration: Mar 2021 - April 2022
     desc:
       - |
         The NGO teaches children of Government school online. 
@@ -14,10 +26,11 @@ data:
       - |
         i have been teaching English, Maths and Physical Science to students of classes 7 and 8. 
         I also could recruit a few volunteers from my company and my social circle.
+    imageUrl: /vol/Online_Teaching.png
   - position: Secretary
     org: 
       name: NSS NITK
-      link: https://www.facebook.com/NSSNITK
+      url: https://www.facebook.com/NSSNITK
     duration: Sep 2014 – Apr 2017
     desc:
       - |
@@ -28,10 +41,11 @@ data:
         Another primary aim of the club is to raise awareness about and encourage students and faculty of NITK to participate in various social activities.
         We conduct college campus and NITK beach cleanup programmes and blood donation camps.
         We even perform street plays (nukkad natak) in and around the campus to raise awareness about pollution, water conservation etc.
+    imageUrl: /vol/Beach_Cleaning.png
   - position: English Teacher
     org: 
       name: KREC school Teacher Mentorship programme, NSS NITK
-      link: https://www.facebook.com/NSSNITK
+      url: https://www.facebook.com/NSSNITK
     duration: Jan 2015 – May 2018
     desc:
       - |
@@ -39,3 +53,4 @@ data:
         The materials required for teaching English is provided by Early Learning Center, Mangalore, Karnataka.
         This helped school children to prepare for their future in the competitive world. The team started with 15 volunteers in 2015 and the size of the team grew to 50 in 2018.
         In addition to teaching, we occasionally conduct programmes like sports day and teachers day for the kids.
+    imageUrl: /vol/A_Male_Teacher_OpenAI.png
